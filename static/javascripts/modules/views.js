@@ -9,6 +9,7 @@ App.LayoutView = Marionette.LayoutView.extend({
 
 App.TextareaView = Marionette.ItemView.extend({
   template: JST.textarea,
+  className: 'row',
 
   ui: {
     input: 'input'
@@ -38,6 +39,7 @@ App.TextareaView = Marionette.ItemView.extend({
 });
 
 App.MessageView = Marionette.ItemView.extend({
+  className: 'message',
   template: JST.message
 });
 
