@@ -5,6 +5,7 @@ GEM
       sass (~> 3.4)
       thor
     daemons (1.2.2)
+    ejs (1.1.1)
     eventmachine (1.0.7)
     rack (1.6.0)
     rack-protection (1.5.3)
@@ -28,6 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   bourbon
+  ejs
   sinatra
   sprockets
   thin
