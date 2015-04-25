@@ -1,14 +1,30 @@
 App.Router = Marionette.AppRouter.extend({
+
   routes: {
+    'login(/)': 'login',
     '': 'index'
   },
 
-  index: function(){
-    var messagesView = new App.MessagesView({ collection: App.messages })
-      , textareaView = new App.TextareaView();
+  authorize: function(){
+    return App.state.getOption('name') !== undefined;
+  },
 
-    App.rootView.render();
-    App.rootView.messagesRegion.show(messagesView);
-    App.rootView.textareaRegion.show(textareaView);
+  redirectTo: function(route){
+    this.navigate(route, { trigger: true, replace: true });
+  },
+
+  login: function(){
+    var modalView = new App.ModalView();
+    App.modalRegion.show(modalView);
+  },
+
+  index: function(){
+    if (this.authorize()){
+      var messagesView = new App.MessagesView({ collection: App.messages });
+      App.mainRegion.show(messagesView);
+    } else {
+      this.redirectTo('login');
+    }
   }
+
 });

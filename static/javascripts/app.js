@@ -11,10 +11,15 @@
 var App = new Marionette.Application();
 
 App.on('start', function(){
+  App.state = new Marionette.Object();
+  App.router = new App.Router();
   App.messages = new App.Messages();
   App.ws = new App.WebSocket({ collection: App.messages });
-  App.rootView = new App.LayoutView();
-  App.router = new App.Router();
+  App.addRegions({
+    mainRegion: '#app',
+    modalRegion: '#modal'
+  });
+
   Backbone.history.start();
 });
 
