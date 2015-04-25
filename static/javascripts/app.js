@@ -1,4 +1,5 @@
 //= require jquery-2.1.3
+//= require jquery.timeago
 //= require underscore
 //= require backbone
 //= require backbone.marionette

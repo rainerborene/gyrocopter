@@ -9,6 +9,7 @@ App.LayoutView = Marionette.LayoutView.extend({
 
 App.TextareaView = Marionette.ItemView.extend({
   template: JST.textarea,
+
   className: 'row',
 
   ui: {
@@ -31,7 +32,16 @@ App.TextareaView = Marionette.ItemView.extend({
 
 App.MessageView = Marionette.ItemView.extend({
   className: 'message',
-  template: JST.message
+
+  template: JST.message,
+
+  ui: {
+    time: '.message-time'
+  },
+
+  onRender: function(){
+    this.ui.time.timeago();
+  }
 });
 
 App.MessagesView = Marionette.CollectionView.extend({

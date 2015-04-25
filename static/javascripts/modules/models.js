@@ -3,7 +3,7 @@ App.Message = Backbone.Model.extend({
   initialize: function(){
     if (this.isNew()){
       this.set('id', this._uuid());
-      this.set('published_at', new Date());
+      this.set('published_at', (new Date()).toISOString());
     }
   },
 

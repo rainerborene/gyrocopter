@@ -8,7 +8,8 @@ namespace :assets do
       'http://underscorejs.org/underscore.js',
       'http://backbonejs.org/backbone.js',
       'http://marionettejs.com/downloads/backbone.marionette.js',
-      'https://raw.githubusercontent.com/Dogfalo/materialize/master/dist/js/materialize.js'
+      'https://raw.githubusercontent.com/Dogfalo/materialize/master/dist/js/materialize.js',
+      'https://raw.githubusercontent.com/rmm5t/jquery-timeago/master/jquery.timeago.js'
     ]
 
     javascripts.each {|url| system("curl #{url} -O") }
