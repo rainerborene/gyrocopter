@@ -11,6 +11,7 @@ var App = new Marionette.Application();
 
 App.on('start', function(){
   App.messages = new App.Messages();
+  App.ws = new App.WebSocket({ collection: App.messages });
   App.rootView = new App.LayoutView();
   App.router = new App.Router();
   Backbone.history.start();

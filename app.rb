@@ -1,30 +1,34 @@
 require 'bundler/setup'
-require 'sinatra/base'
-require 'sprockets'
-require 'bourbon'
+Bundler.require
 
-class Chat < Sinatra::Base
-  set :sprockets, Sprockets::Environment.new(root)
+require './lib/realtime'
 
-  configure do
-    sprockets.append_path 'static/templates'
-    sprockets.append_path 'static/javascripts'
-    sprockets.append_path 'static/stylesheets'
-    sprockets.append_path 'static/images'
+module Chat
+  class App < Sinatra::Base
+    set :sprockets, Sprockets::Environment.new(root)
 
-    sprockets.append_path 'vendor/javascripts'
-    sprockets.append_path 'vendor/stylesheets'
-    sprockets.append_path 'vendor/images'
+    use Chat::Realtime
 
-    sprockets.cache = Sprockets::Cache::FileStore.new('./tmp')
-  end
+    configure do
+      sprockets.append_path 'static/templates'
+      sprockets.append_path 'static/javascripts'
+      sprockets.append_path 'static/stylesheets'
+      sprockets.append_path 'static/images'
 
-  get '/' do
-    erb :index
-  end
+      sprockets.append_path 'vendor/javascripts'
+      sprockets.append_path 'vendor/stylesheets'
+      sprockets.append_path 'vendor/images'
 
-  get '/assets/*' do
-    env['PATH_INFO'].sub!(%r{^/assets}, '')
-    settings.sprockets.call(env)
+      sprockets.cache = Sprockets::Cache::FileStore.new('./tmp')
+    end
+
+    get '/' do
+      erb :index
+    end
+
+    get '/assets/*' do
+      env['PATH_INFO'].sub!(%r{^/assets}, '')
+      settings.sprockets.call(env)
+    end
   end
 end

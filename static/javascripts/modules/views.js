@@ -19,21 +19,12 @@ App.TextareaView = Marionette.ItemView.extend({
     'keypress @ui.input': 'onKeyPress'
   },
 
-  reset: function(){
-    this.ui.input.val('');
-  },
-
   onKeyPress: function(ev){
     var value = $.trim(this.ui.input.val());
 
     if (ev.keyCode === 13 && value.length){
-      App.messages.add({
-        author: 'Rainer Borene',
-        message: value,
-        time: 'now'
-      });
-
-      this.reset();
+      App.messages.add({ author: 'Rainer Borene', message: value });
+      this.ui.input.val('');
     }
   }
 });

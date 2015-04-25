@@ -1,2 +1,2 @@
 require './app'
-run Chat
+run Chat::App
