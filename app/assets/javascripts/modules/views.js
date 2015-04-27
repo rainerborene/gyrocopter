@@ -24,7 +24,6 @@ App.ModalView = Marionette.ItemView.extend({
 
   onActionClick: function(ev){
     var name = $.trim(this.ui.input.val());
-
     if (name.length){
       this.$el.closeModal();
       App.state.mergeOptions({ name: name }, ['name']);
@@ -52,6 +51,7 @@ App.MessagesView = Marionette.CompositeView.extend({
   childView: App.MessageView,
   childViewContainer: '.messages',
   template: JST.chat,
+  className: 'messenger',
 
   ui: {
     input: 'input'

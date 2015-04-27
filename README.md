@@ -1,1 +1,3 @@
-# chat
+# messenger
+
+A simple chat demo.

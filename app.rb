@@ -1,23 +1,24 @@
 require 'bundler/setup'
 Bundler.require
 
-require './lib/realtime'
+require './app/websocket'
 
-module Chat
+module Messenger
   class App < Sinatra::Base
     set :sprockets, Sprockets::Environment.new(root)
+    set :views, 'app/views'
 
-    use Chat::Realtime
+    use Messenger::WebSocket
 
     configure do
-      sprockets.append_path 'static/templates'
-      sprockets.append_path 'static/javascripts'
-      sprockets.append_path 'static/stylesheets'
-      sprockets.append_path 'static/images'
+      sprockets.append_path 'app/assets/templates'
+      sprockets.append_path 'app/assets/javascripts'
+      sprockets.append_path 'app/assets/stylesheets'
+      sprockets.append_path 'app/assets/images'
 
-      sprockets.append_path 'vendor/javascripts'
-      sprockets.append_path 'vendor/stylesheets'
-      sprockets.append_path 'vendor/images'
+      sprockets.append_path 'vendor/assets/javascripts'
+      sprockets.append_path 'vendor/assets/stylesheets'
+      sprockets.append_path 'vendor/assets/images'
 
       sprockets.cache = Sprockets::Cache::FileStore.new('./tmp')
     end

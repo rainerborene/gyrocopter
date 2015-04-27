@@ -1,7 +1,7 @@
 Faye::WebSocket.load_adapter('thin')
 
-module Chat
-  class Realtime
+module Messenger
+  class WebSocket
     def initialize(app)
       @app = app
       @clients = []
