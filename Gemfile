@@ -1,8 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'sinatra', require: 'sinatra/base'
-gem 'bourbon'
-gem 'sprockets'
+gem 'sinatra'
+gem 'faye-websocket'
 gem 'thin'
+
+# Assets
+gem 'sprockets'
+gem 'bourbon'
 gem 'ejs'
-gem 'faye-websocket', require: 'faye/websocket'
+
+# DB
+gem 'sequel'
+gem 'sinatra-sequel'
+gem 'pg'

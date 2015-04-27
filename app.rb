@@ -1,35 +1,35 @@
 require 'bundler/setup'
-Bundler.require
 
-require './app/websocket'
+# Setup load paths
+$: << File.expand_path('../', __FILE__)
+$: << File.expand_path('../lib', __FILE__)
+
+require 'sinatra/sequel'
+
+require 'app/websocket'
+require 'app/assets'
 
 module Messenger
-  class App < Sinatra::Base
-    set :sprockets, Sprockets::Environment.new(root)
-    set :views, 'app/views'
+  class App < Sinatra::Application
+    configure do
+      disable :method_override
+      disable :static
+
+      set :root, __dir__
+      set :views, 'app/views'
+      set :erb, escape_html: true
+      set :protection, except: :session_hijacking
+      set :database, lambda {
+        ENV['DATABASE_URL'] || "postgres://postgres@localhost:5432/messenger_#{environment}"
+      }
+    end
 
     use Messenger::WebSocket
 
-    configure do
-      sprockets.append_path 'app/assets/templates'
-      sprockets.append_path 'app/assets/javascripts'
-      sprockets.append_path 'app/assets/stylesheets'
-      sprockets.append_path 'app/assets/images'
-
-      sprockets.append_path 'vendor/assets/javascripts'
-      sprockets.append_path 'vendor/assets/stylesheets'
-      sprockets.append_path 'vendor/assets/images'
-
-      sprockets.cache = Sprockets::Cache::FileStore.new('./tmp')
-    end
+    register Messenger::Assets
 
     get '/' do
       erb :index
-    end
-
-    get '/assets/*' do
-      env['PATH_INFO'].sub!(%r{^/assets}, '')
-      settings.sprockets.call(env)
     end
   end
 end

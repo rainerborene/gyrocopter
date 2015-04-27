@@ -1,3 +1,7 @@
+task :app do
+  require './app'
+end
+
 namespace :assets do
   desc "Download JavaScript dependencies"
   task :dependencies do
@@ -13,5 +17,13 @@ namespace :assets do
     ]
 
     javascripts.each {|url| system("curl #{url} -O") }
+  end
+end
+
+namespace :db do
+  desc "Run DB migrations"
+  task migrate: :app do
+    require 'sequel/extensions/migration'
+    Sequel::Migrator.apply(Messenger::App.database, 'db/migrations')
   end
 end

@@ -1,3 +1,5 @@
+require 'faye/websocket'
+
 Faye::WebSocket.load_adapter('thin')
 
 module Messenger
