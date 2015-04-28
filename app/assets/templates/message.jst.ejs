@@ -1,2 +1,6 @@
 <time class="message-time" datetime="<%= published_at %>"></time>
 <span class="message-author"><%= author %></span>: <%= body %>
+
+<% if (pending) { %>
+  pending
+<% } %>

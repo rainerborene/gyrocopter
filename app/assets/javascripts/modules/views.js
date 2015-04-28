@@ -38,6 +38,10 @@ App.MessageView = Marionette.ItemView.extend({
   className: 'message',
   template: JST.message,
 
+  modelEvents: {
+    "change": "render"
+  },
+
   ui: {
     time: '.message-time'
   },
@@ -65,11 +69,12 @@ App.MessagesView = Marionette.CompositeView.extend({
     var value = $.trim(this.ui.input.val());
 
     if (ev.keyCode === 13 && value.length){
-      App.ws.send({
+      var model = this.collection.add({
         author: App.state.getOption('name'),
-        body: value,
-        published_at: (new Date()).toISOString()
+        body: value
       });
+
+      App.vent.trigger("socket:send", model.toJSON());
 
       this.ui.input.val('');
     }

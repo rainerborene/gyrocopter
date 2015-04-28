@@ -21,6 +21,7 @@ App.Router = Marionette.AppRouter.extend({
   index: function(){
     if (this.authorize()){
       var messagesView = new App.MessagesView({ collection: App.messages });
+      App.WebSocket.connect();
       App.mainRegion.show(messagesView);
     } else {
       this.redirectTo('login');

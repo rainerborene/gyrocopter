@@ -42,6 +42,7 @@ module Messenger
           p [:message, event.data]
           data = JSON.parse event.data, symbolize_names: true
           Message.create({
+            id: data[:id],
             body: data[:body],
             author: data[:author],
             published_at: data[:published_at]
