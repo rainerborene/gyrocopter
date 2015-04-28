@@ -65,7 +65,12 @@ App.MessagesView = Marionette.CompositeView.extend({
     var value = $.trim(this.ui.input.val());
 
     if (ev.keyCode === 13 && value.length){
-      App.messages.add({ author: App.state.getOption('name'), message: value });
+      App.ws.send({
+        author: App.state.getOption('name'),
+        body: value,
+        published_at: (new Date()).toISOString()
+      });
+
       this.ui.input.val('');
     }
   }

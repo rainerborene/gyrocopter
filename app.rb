@@ -5,9 +5,10 @@ $: << File.expand_path('../', __FILE__)
 $: << File.expand_path('../lib', __FILE__)
 
 require 'sinatra/sequel'
+require 'logger'
 
-require 'app/websocket'
-require 'app/assets'
+require 'app/extensions'
+require 'app/models'
 
 module Messenger
   class App < Sinatra::Application
@@ -22,14 +23,19 @@ module Messenger
       set :database, lambda {
         ENV['DATABASE_URL'] || "postgres://postgres@localhost:5432/messenger_#{environment}"
       }
+
+      database.loggers << Logger.new(STDOUT)
     end
 
-    use Messenger::WebSocket
+    use Messenger::Extensions::WebSocket
 
-    register Messenger::Assets
+    register Messenger::Extensions::Assets
 
     get '/' do
       erb :index
     end
   end
 end
+
+# To easily access models in the console
+include Messenger::Models

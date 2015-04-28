@@ -1,20 +1,4 @@
-App.Message = Backbone.Model.extend({
-
-  initialize: function(){
-    if (this.isNew()){
-      this.set('id', this._uuid());
-      this.set('published_at', (new Date()).toISOString());
-    }
-  },
-
-  _uuid: function(){
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-      return v.toString(16);
-    });
-  }
-
-});
+App.Message = Backbone.Model.extend();
 
 App.Messages = Backbone.Collection.extend({
   model: App.Message
@@ -25,16 +9,24 @@ App.WebSocket = Marionette.Object.extend({
   initialize: function(){
     this._ws = new WebSocket('ws://' + location.host + '/');
     this._ws.onmessage = this._onMessage.bind(this);
-    this.options.collection.on('add', this._onAdd, this);
+    this._ws.onerror = this._onError.bind(this);
+  },
+
+  _onError: function(){
+    console.log(arguments);
   },
 
   _onAdd: function(model){
-    this._ws.send(JSON.stringify(model.toJSON()));
+    this.send(model.toJSON());
   },
 
   _onMessage: function(message){
     var data = JSON.parse(message.data);
     this.options.collection.add(data);
+  },
+
+  send: function(data){
+    this._ws.send(JSON.stringify(data));
   }
 
 });
