@@ -3,8 +3,7 @@ App.Message = Backbone.Model.extend({
   defaults: function(){
     return {
       id: App.uuid4.generate(),
-      published_at: (new Date()).toISOString(),
-      pending: true
+      published_at: (new Date()).toISOString()
     };
   }
 

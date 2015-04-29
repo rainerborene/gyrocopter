@@ -22,6 +22,7 @@ body {
 }
 
 .message {
-  &-time { color: color("grey", "base"); }
+  &-time   { color: color("grey", "base"); }
   &-author { color: color("light-blue", "darken-2"); }
+  i        { color: color("grey", "base"); }
 }

@@ -1,5 +1,5 @@
+//= require sugar
 //= require jquery-2.1.3
-//= require jquery.timeago
 //= require underscore
 //= require backbone
 //= require backbone.marionette
@@ -11,17 +11,13 @@
 var App = new Marionette.Application();
 
 App.on('start', function(){
+  App.messages = new App.Messages();
   App.state = new Marionette.Object();
   App.router = new App.Router();
-  App.messages = new App.Messages();
   App.addRegions({
     mainRegion: '#app',
     modalRegion: '#modal'
   });
 
   Backbone.history.start();
-});
-
-$(function(){
-  App.start();
 });

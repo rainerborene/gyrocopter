@@ -11,5 +11,11 @@
     <div id="modal"></div>
 
     <script src="/assets/app.js"></script>
+    <script>
+      $(function(){
+        App.start();
+        App.messages.reset(<%= @messages.to_json %>);
+      });
+    </script>
   </body>
 </html>

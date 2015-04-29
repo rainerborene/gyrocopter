@@ -37,6 +37,11 @@ App.ModalView = Marionette.ItemView.extend({
 App.MessageView = Marionette.ItemView.extend({
   className: 'message',
   template: JST.message,
+  templateHelpers: {
+    format: function(date){
+      return Date.create(date).format("{MM}/{dd}/{yyyy} {HH}:{mm}");
+    }
+  },
 
   modelEvents: {
     "change": "render"
@@ -44,10 +49,6 @@ App.MessageView = Marionette.ItemView.extend({
 
   ui: {
     time: '.message-time'
-  },
-
-  onRender: function(){
-    this.ui.time.timeago();
   }
 });
 
@@ -71,7 +72,8 @@ App.MessagesView = Marionette.CompositeView.extend({
     if (ev.keyCode === 13 && value.length){
       var model = this.collection.add({
         author: App.state.getOption('name'),
-        body: value
+        body: value,
+        pending: true
       });
 
       App.vent.trigger("socket:send", model.toJSON());

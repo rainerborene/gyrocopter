@@ -27,11 +27,12 @@ module Messenger
       database.loggers << Logger.new(STDOUT)
     end
 
-    use Messenger::Extensions::WebSocket
+    use Extensions::WebSocket
 
-    register Messenger::Extensions::Assets
+    register Extensions::Assets
 
     get '/' do
+      @messages = Message.all
       erb :index
     end
   end
