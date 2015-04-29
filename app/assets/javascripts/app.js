@@ -3,11 +3,11 @@
 //= require backbone
 //= require backbone.marionette
 //= require materialize
-//= require uuid4
 //= require sugar
 //= require store
 //= require_tree ../templates
 //= require_self
+//= require uuid4
 //= require_tree ./modules
 
 var App = new Marionette.Application();

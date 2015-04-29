@@ -1,6 +1,8 @@
 App.Router = Marionette.AppRouter.extend({
 
-  routes: {
+  controller: App.Controller,
+
+  appRoutes: {
     'login(/)': 'login',
     '': 'index'
   },
@@ -11,22 +13,6 @@ App.Router = Marionette.AppRouter.extend({
 
   redirectTo: function(route){
     this.navigate(route, { trigger: true, replace: true });
-  },
-
-  login: function(){
-    var modalView = new App.ModalView();
-    App.modalRegion.show(modalView);
-  },
-
-  index: function(){
-    if (this.unauthorized()){
-      return this.redirectTo('login');
-    }
-
-    var messagesView = new App.MessagesView({ collection: App.messages });
-
-    App.WebSocket.start();
-    App.mainRegion.show(messagesView);
   }
 
 });

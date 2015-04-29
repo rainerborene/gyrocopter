@@ -24,10 +24,10 @@ App.ModalView = Marionette.ItemView.extend({
 
   onActionClick: function(ev){
     var name = $.trim(this.ui.input.val());
+
     if (name.length){
       this.$el.closeModal();
-      App.state.mergeOptions({ name: name }, ['name']);
-      App.router.redirectTo('');
+      this.trigger('join', name);
     }
 
     ev.preventDefault();
@@ -69,15 +69,8 @@ App.MessagesView = Marionette.CompositeView.extend({
   onInputKeyPress: function(ev){
     var value = $.trim(this.ui.input.val());
 
-    if (ev.keyCode === 13 && value.length){
-      var model = this.collection.add({
-        author: App.state.getOption('name'),
-        body: value,
-        pending: true
-      });
-
-      App.vent.trigger("socket:send", model.toJSON());
-
+    if (value.length && ev.keyCode === 13){
+      this.trigger('input:enter', value);
       this.ui.input.val('');
     }
   }
