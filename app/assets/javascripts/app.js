@@ -1,9 +1,11 @@
-//= require sugar
 //= require jquery-2.1.3
 //= require underscore
 //= require backbone
 //= require backbone.marionette
 //= require materialize
+//= require uuid4
+//= require sugar
+//= require store
 //= require_tree ../templates
 //= require_self
 //= require_tree ./modules

@@ -1,30 +1,30 @@
 App.module('WebSocket', function(){
 
-  var ws;
-
   var trigger = function(eventName){
     return function(event){
       App.vent.trigger(eventName, event);
     };
   };
 
-  var onMessage = function(message){
+  this.startWithParent = false;
+
+  this._onMessage = function(message){
     var data = JSON.parse(message.data);
     App.vent.trigger("socket:message", data);
   };
 
-  var send = function(data){
-    ws.send(JSON.stringify(data));
+  this._send = function(data){
+    this._ws.send(JSON.stringify(data));
   };
 
-  this.connect = function(){
-    ws = new WebSocket('ws://' + location.host + '/');
-    ws.onerror = trigger("socker:error");
-    ws.onopen = trigger("socker:open");
-    ws.onclose = trigger("socket:close");
-    ws.onmessage = onMessage;
+  this.onStart = function(){
+    this._ws = new WebSocket('ws://' + location.host + '/');
+    this._ws.onerror = trigger("socket:error");
+    this._ws.onopen = trigger("socket:opened");
+    this._ws.onclose = trigger("socket:closed");
+    this._ws.onmessage = this._onMessage;
   };
 
-  App.vent.on("socket:send", send);
+  App.vent.on("socket:send", this._send, this);
 
 });

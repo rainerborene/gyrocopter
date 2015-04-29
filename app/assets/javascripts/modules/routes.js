@@ -5,8 +5,8 @@ App.Router = Marionette.AppRouter.extend({
     '': 'index'
   },
 
-  authorize: function(){
-    return App.state.getOption('name') !== undefined;
+  unauthorized: function(){
+    return App.state.getOption('name') === undefined;
   },
 
   redirectTo: function(route){
@@ -19,13 +19,14 @@ App.Router = Marionette.AppRouter.extend({
   },
 
   index: function(){
-    if (this.authorize()){
-      var messagesView = new App.MessagesView({ collection: App.messages });
-      App.WebSocket.connect();
-      App.mainRegion.show(messagesView);
-    } else {
-      this.redirectTo('login');
+    if (this.unauthorized()){
+      return this.redirectTo('login');
     }
+
+    var messagesView = new App.MessagesView({ collection: App.messages });
+
+    App.WebSocket.start();
+    App.mainRegion.show(messagesView);
   }
 
 });
