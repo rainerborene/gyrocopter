@@ -13,6 +13,7 @@ Client-side dependencies:
 - Backbone.js
 - Marionette
 - Materialize UI
+- moment.js
 
 # License
 

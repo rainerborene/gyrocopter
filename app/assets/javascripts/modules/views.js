@@ -39,7 +39,7 @@ App.MessageView = Marionette.ItemView.extend({
   template: JST.message,
   templateHelpers: {
     format: function(date){
-      return Date.create(date).format("{MM}/{dd}/{yyyy} {HH}:{mm}");
+      return moment(date).format("HH:mm:ss");
     }
   },
 

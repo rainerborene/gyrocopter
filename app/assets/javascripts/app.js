@@ -1,9 +1,9 @@
+//= require moment
 //= require jquery-2.1.3
 //= require underscore
 //= require backbone
 //= require backbone.marionette
 //= require materialize
-//= require sugar
 //= require store
 //= require_tree ../templates
 //= require_self
