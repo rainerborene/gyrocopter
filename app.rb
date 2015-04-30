@@ -24,6 +24,14 @@ module Messenger
         ENV['DATABASE_URL'] || "postgres://postgres@localhost:5432/messenger_#{environment}"
       }
 
+      set :sessions,
+        httponly: true,
+        secure: production?,
+        expire_after: 5.years,
+        secret: ENV['SESSION_SECRET']
+    end
+
+    configure :development do
       database.loggers << Logger.new(STDOUT)
     end
 
