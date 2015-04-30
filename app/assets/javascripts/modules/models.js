@@ -14,7 +14,7 @@ App.Messages = Backbone.Collection.extend({
   model: App.Message,
 
   initialize: function(){
-    var messages = store.get('messages');
+    var messages = store.get("messages");
 
     App.vent.on("socket:message", this._onMessage, this);
     App.vent.on("socket:opened", this._onOpened, this);
@@ -27,16 +27,16 @@ App.Messages = Backbone.Collection.extend({
 
   _synchronize: function(){
     var messages = this.filter(function(model){
-          return model.get('pending');
+          return model.get("pending");
         }).map(function(model){
           return model.toJSON();
         });
 
-    store.set('messages', messages);
+    store.set("messages", messages);
   },
 
   _onOpened: function(){
-    var messages = store.get('messages');
+    var messages = store.get("messages");
 
     if (this.interval){
       clearInterval(this.interval);

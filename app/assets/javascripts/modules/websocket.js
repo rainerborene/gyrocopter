@@ -1,4 +1,4 @@
-App.module('WebSocket', function(){
+App.module("WebSocket", function(){
 
   var trigger = function(eventName){
     return function(event){
@@ -18,7 +18,7 @@ App.module('WebSocket', function(){
   };
 
   this.onStart = function(){
-    this._ws = new WebSocket('ws://' + location.host + '/');
+    this._ws = new WebSocket("ws://" + location.host + "/");
     this._ws.onerror = trigger("socket:error");
     this._ws.onopen = trigger("socket:opened");
     this._ws.onclose = trigger("socket:closed");
