@@ -1,4 +1,4 @@
-module Messenger
+module GyroCopter
   module Extensions
     autoload :Assets,    'app/extensions/assets'
     autoload :WebSocket, 'app/extensions/websocket'

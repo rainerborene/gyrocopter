@@ -1,2 +1,2 @@
 require './app'
-run Messenger::App
+run GyroCopter::App

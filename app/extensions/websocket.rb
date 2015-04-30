@@ -3,13 +3,13 @@ require 'thread'
 
 Faye::WebSocket.load_adapter('thin')
 
-module Messenger
+module GyroCopter
   module Extensions
     class WebSocket
       def initialize(app)
         @app = app
         @clients = []
-        @database = Messenger::App.database
+        @database = GyroCopter::App.database
         @mutex = Mutex.new
         @threaded = false
       end

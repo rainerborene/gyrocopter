@@ -1,7 +1,7 @@
 require 'sprockets'
 require 'bourbon'
 
-module Messenger
+module GyroCopter
   module Extensions
     module Assets extend self
       def registered(app)

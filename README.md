@@ -1,8 +1,10 @@
-# messenger
+# gyrocopter
 
 A simple chat app using Faye and PostgreSQL Pub/Sub.
 
 # Dependencies
+
+See Ruby dependencies on the [Gemfile](https://github.com/rainerborene/gyrocopter/blob/master/Gemfile).
 
 Client-side dependencies:
 

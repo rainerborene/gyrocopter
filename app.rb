@@ -10,7 +10,7 @@ require 'logger'
 require 'app/extensions'
 require 'app/models'
 
-module Messenger
+module GyroCopter
   class App < Sinatra::Application
     configure do
       disable :method_override
@@ -47,4 +47,4 @@ module Messenger
 end
 
 # To easily access models in the console
-include Messenger::Models
+include GyroCopter::Models

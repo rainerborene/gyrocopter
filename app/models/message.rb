@@ -1,4 +1,4 @@
-module Messenger
+module GyroCopter
   module Models
     class Message < Sequel::Model
       unrestrict_primary_key
