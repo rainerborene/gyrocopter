@@ -27,7 +27,7 @@ module GyroCopter
       set :sessions,
         httponly: true,
         secure: production?,
-        expire_after: 5.years,
+        expire_after: 86400, # 1 day
         secret: ENV['SESSION_SECRET']
     end
 
