@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# v1
+NETWORK:
+*
+CACHE:
+/
+/assets/
+/assets/app.css
+/assets/app.js
+/assets/material-design-icons/Material-Design-Icons.eot
+/assets/material-design-icons/Material-Design-Icons.svg
+/assets/material-design-icons/Material-Design-Icons.ttf
+/assets/material-design-icons/Material-Design-Icons.woff
+/assets/material-design-icons/Material-Design-Icons.woff2

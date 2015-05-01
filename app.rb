@@ -14,9 +14,6 @@ require 'app/models'
 module GyroCopter
   class App < Sinatra::Application
     configure do
-      disable :method_override
-      disable :static
-
       set :root, __dir__
       set :views, 'app/views'
       set :erb, escape_html: true
