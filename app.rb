@@ -5,6 +5,8 @@ $: << File.expand_path('../', __FILE__)
 $: << File.expand_path('../lib', __FILE__)
 
 require 'sinatra/sequel'
+require 'active_support'
+require 'active_support/core_ext'
 require 'active_support/json'
 require 'logger'
 
@@ -25,7 +27,7 @@ module GyroCopter
       set :sessions,
         httponly: true,
         secure: production?,
-        expire_after: 86400, # 1 day
+        expire_after: 1.year,
         secret: ENV['SESSION_SECRET']
     end
 
