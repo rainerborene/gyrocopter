@@ -1,8 +1,2 @@
-<% if (hasOwnProperty('pending') && pending) { %>
-  <i class="mdi-action-done"></i>
-<% } else { %>
-  <i class="mdi-action-done-all"></i>
-<% } %>
-
 <time class="message-time"><%= format(published_at) %></time>
 <span class="message-author"><%= author %></span>: <%= body %>

@@ -3,8 +3,7 @@ App.Controller = {
   _onMessagesInputEnter: function(value){
     var model = this.collection.add({
       author: App.state.getOption("name"),
-      body: value,
-      pending: true
+      body: value
     });
 
     App.vent.trigger("socket:send", model.toJSON());

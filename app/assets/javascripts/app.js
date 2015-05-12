@@ -4,7 +4,6 @@
 //= require backbone
 //= require backbone.marionette
 //= require materialize
-//= require store
 //= require_tree ../templates
 //= require_self
 //= require uuid4
