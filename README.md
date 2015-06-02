@@ -1,5 +1,8 @@
 # gyrocopter
 
+[![Code Climate](https://codeclimate.com/github/rainerborene/gyrocopter/badges/gpa.svg)](https://codeclimate.com/github/rainerborene/gyrocopter)
+[![Test Coverage](https://codeclimate.com/github/rainerborene/gyrocopter/badges/coverage.svg)](https://codeclimate.com/github/rainerborene/gyrocopter/coverage)
+
 A simple chat app using Faye and PostgreSQL Pub/Sub.
 
 # Dependencies
